@@ -32,6 +32,18 @@ class App extends Component {
     })
   }
 
+  deleteTodo(index){
+    console.log('delete', index);
+    //remove if matching index
+    const arr = this.state.todos.filter(
+      item => item !== this.state.todos[index]
+    );
+
+    this.setState({
+      todos: arr
+    });
+  }
+
   handleChange(e){
     // console.log('handle change ', e.target.value);
     this.setState({
@@ -71,7 +83,9 @@ class App extends Component {
                   */
                   <ToDo key={index} description={todo.description}
                   isCompleted={todo.isCompleted}
-                  toggleComplete={ () => this.toggleComplete(index) }/>
+                  toggleComplete={ () => this.toggleComplete(index) }
+                  deleteTodo={() => this.deleteTodo(index)}
+                  />
 
               )}
           </ul>
